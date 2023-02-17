@@ -8,7 +8,7 @@ def game():
     MAX_MOUTH = 1
     MAX_LEGS = 6
 
-    ALL_PARTS_COUNT = 13
+    ALL_PARTS_COUNT = MAX_BODY + MAX_HEAD + MAX_ANTENNA + MAX_EYES + MAX_MOUTH + MAX_LEGS
 
     body_count = 0
     head_count = 0
@@ -52,11 +52,11 @@ def game():
             break
 
         value = random.randint(1, 6)
-        print("You rolled a", value)
+        print("dice rolling...\n", value)
 
         if body_count < MAX_BODY:
             if value == 1:
-                body_count = 1
+                body_count += 1
                 print("+1 body! (" + str(body_count) + "/" + str(MAX_BODY) + " bodies collected)")
             else:
                 print("You can not collect any other parts without having a body first.")
@@ -70,7 +70,7 @@ def game():
 
         elif head_count < MAX_HEAD:
             if value == 2:
-                head_count = 1
+                head_count += 1
                 print("+1 head! (" + str(head_count) + "/" + str(MAX_HEAD) + " heads collected)")
             else:
                 print("You can not collect an antenna, eye, or mouth without having a head first.")
@@ -80,7 +80,7 @@ def game():
                 print("No room for more bodies")
 
             elif value == 2:
-                print("No room for more bodies")
+                print("No room for more heads")
 
             elif value == 3:
                 if antenna_count < MAX_ANTENNA:
@@ -105,9 +105,9 @@ def game():
 
         collected_parts = body_count + head_count + antenna_count + eye_count + mouth_count + leg_count
         print(str(collected_parts) + " parts collected. " + str(ALL_PARTS_COUNT - collected_parts) + " parts to go.\n\n")
+
         if body_count == MAX_BODY and head_count == MAX_HEAD and antenna_count == MAX_ANTENNA and eye_count == MAX_EYES and mouth_count == MAX_MOUTH and leg_count == MAX_LEGS:
             beetle_complete = True
             print("Congratulations, you have collected all body parts of the beetle!")
-
 
 game()
